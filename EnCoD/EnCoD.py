@@ -337,8 +337,8 @@ def plot_confusion_matrix_from_dataloader(model, dataloader, device, class_names
 if __name__ == "__main__":
     try:
         # File paths - consider using relative paths or environment variables
-        data0_path = "G:\\dataset_itc_mnp\\mnp_fragment\\mnp_unenc(50jpeg_50rar).csv"
-        data1_path = "G:\\dataset_itc_mnp\\mnp_fragment\\mnp_encrar.csv"
+        data0_path = "G:\dataset_mnp\mnp_fragment\\all_unenc(50_50).csv"
+        data1_path = "G:\dataset_mnp\mnp_fragment\\all_encrar.csv"
         
         print(f"Loading data from {data0_path} and {data1_path}")
         data0 = pd.read_csv(data0_path, header=None)
@@ -393,5 +393,6 @@ if __name__ == "__main__":
         # plotting confusion matrix
         fig, met = plot_confusion_matrix_from_dataloader(model, test_dataloader, device, normalize=True )
         fig.show()
+        plt.show()
     except Exception as e:
         print(f"An error occurred: {e}")
