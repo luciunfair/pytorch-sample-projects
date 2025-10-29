@@ -240,7 +240,7 @@ def plot_confusion_matrix_from_dataloader(model, dataloader, device, class_names
         Figure object and metrics dictionary
     """
     if class_names is None:
-        class_names = ['COMPRESSED', 'ENCRYPTED']
+        class_names = ['UNENCRYPTED', 'ENCRYPTED']
     
     # Make sure dataloader has num_workers=0 to avoid pickling errors
     # We'll recreate it if needed
@@ -288,7 +288,7 @@ def plot_confusion_matrix_from_dataloader(model, dataloader, device, class_names
     # Normalize if required
     if normalize:
         cm_norm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-        sns.heatmap(cm_norm, annot=True, fmt='.2f', xticklabels=class_names, 
+        sns.heatmap(cm_norm*100, annot=True, fmt='.2f', xticklabels=class_names, 
                     yticklabels=class_names, cmap=cmap, ax=ax)
         title = f'Normalized {title}'
     else:
@@ -337,8 +337,8 @@ def plot_confusion_matrix_from_dataloader(model, dataloader, device, class_names
 if __name__ == "__main__":
     try:
         # File paths - consider using relative paths or environment variables
-        data0_path = "G:\dataset_mnp\mnp_fragment\\all_unenc(50_50).csv"
-        data1_path = "G:\dataset_mnp\mnp_fragment\\all_encrar.csv"
+        data0_path = "D:\\DATASETS\\datasets_EnCoD\\encod_fragment\\60k\\unenc.csv"
+        data1_path = "D:\\DATASETS\\datasets_EnCoD\\encod_fragment\\60k\\enc.csv"
         
         print(f"Loading data from {data0_path} and {data1_path}")
         data0 = pd.read_csv(data0_path, header=None)
